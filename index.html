@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ACINES impulsa el acceso a energía sustentable y tecnología limpia.">
+  <title>ACINES | Energía Sustentable</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<style>
+
+:root {
+  --ink: #102b1b;
+  --green: #1c6239;
+  --green-dark: #073e24;
+  --mint: #c9f6dc;
+  --blue: #a5c7ff;
+  --pale: #f5faf6;
+  --white: #fff;
+  --muted: #53645a;
+
+  --shadow: 0 5px 18px rgba(18, 54, 35, .10);
+}
+
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #f8fbf8;
+
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+
+a { color: inherit; }
+
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+
+  padding: 9px clamp(18px, 4vw, 56px);
+  background: rgba(255,255,255,.96);
+
+  box-shadow: 0 2px 12px rgba(0,0,0,.12);
+  backdrop-filter: blur(10px);
+}
+
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--green-dark);
+  text-decoration: none;
+  min-width: 170px;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.brand span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand strong {
+  font-size: 1.1rem;
+  letter-spacing: .06em;
+}
+
+.brand small {
+  margin-top: 4px;
+  font-size: .57rem;
+}
+
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.8vw, 25px);
+}
+
+.navigation a {
+  text-decoration: none;
+  font-size: .83rem;
+  font-weight: 700;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.navigation a:hover,
+.navigation a:focus-visible {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+
+.navigation .join-link {
+  padding: 8px 17px;
+  border-radius: 24px;
+  background: var(--green-dark);
+  color: white;
+}
+
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+.section-anchor {
+  scroll-margin-top: 82px;
+}
+
+
+.hero {
+  min-height: 290px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+
+  padding: 32px 20px 40px;
+
+  background: linear-gradient(
+    110deg,
+    #a8e8c1 0%,
+    #b5e5e4 48%,
+    #83b8df 100%
+  );
+}
+
+.hero-content {
+  max-width: 920px;
+}
+
+
+.hero-emblem {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px;
+
+  border-radius: 50%;
+  background: white;
+  padding: 8px;
+
+  box-shadow: 0 3px 12px #18452a20;
+}
+
+.hero h1 {
+  margin: 8px 0;
+  font-size: clamp(1.5rem, 3.2vw, 2.35rem);
+  line-height: 1.15;
+  letter-spacing: -.04em;
+}
+
+
+.responsible {
+  display: inline-block;
+  margin: 3px 0 12px;
+  padding: 2px 11px;
+  border-radius: 20px;
+
+  color: white;
+  background: var(--green-dark);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.responsible span {
+  display: inline-grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #9ee5a7;
+  color: var(--green-dark);
+}
+
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: 22px;
+  font-size: .86rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition: transform .2s, background .2s;
+}
+
+.button:hover { transform: translateY(-2px); }
+
+.button-dark {
+  color: white;
+  background: var(--green-dark);
+}
+
+.button-outline {
+  border: 1px solid #47775d;
+  color: var(--green-dark);
+  background: #ffffff45;
+}
+
+
+.content-width {
+  width: min(1100px, calc(100% - 36px));
+  margin-inline: auto;
+}
+
+.intro-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px;
+
+  background: white;
+  border: 1px solid #e5eee7;
+  border-radius: 13px;
+
+  box-shadow: var(--shadow);
+}
+
+.info-card h2 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+
+.info-card p {
+  margin: 0;
+  color: #42544a;
+  font-size: .82rem;
+}
+
+.round-icon {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  color: var(--green-dark);
+  background: var(--mint);
+  font-size: 1.65rem;
+}
+
+
+.section-heading {
+  text-align: center;
+  margin: 23px 0 12px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+
+.foda-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.foda-card {
+  padding: 13px;
+  border-radius: 10px;
+  font-size: .76rem;
+}
+
+.foda-card h3 {
+  margin: 0 0 5px;
+  font-size: .9rem;
+}
+
+.foda-card ul {
+  margin: 0;
+  padding-left: 17px;
+}
+
+
+.strength { background: #ccefd0; }
+
+.opportunity { background: #dceaff; }
+
+.weakness { background: #f0eee5; }
+
+.threat { background: #d9eaf3; }
+
+
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0 22px;
+}
+
+.tags span {
+  padding: 4px 10px;
+  border-radius: 16px;
+  background: #d9f1cf;
+  font-size: .7rem;
+}
+
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.mini-grid article {
+  padding: 17px;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.mini-grid h3 {
+  margin: 6px 0 2px;
+  font-size: .9rem;
+}
+
+.mini-grid p {
+  margin: 0;
+  font-size: .76rem;
+  color: var(--muted);
+}
+
+.mini-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #c8efc3;
+}
+
+.mini-icon.blue { background: #c9ddff; }
+
+
+.page-section {
+  padding: 76px max(20px, calc((100% - 1060px) / 2));
+}
+
+.page-section:nth-of-type(even) {
+  background: #eef8f0;
+}
+
+.section-title {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--green);
+  text-transform: uppercase;
+  font-size: .76rem;
+  letter-spacing: .14em;
+  font-weight: 800;
+}
+
+.section-title h2 {
+  margin: 4px 0 8px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -.04em;
+}
+
+.section-title p {
+  margin: 0 auto;
+  max-width: 700px;
+  color: var(--muted);
+}
+
+
+.simple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.simple-card,
+.member-card {
+  padding: 24px;
+  border: 1px solid #e1ece4;
+  border-radius: 15px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.simple-card h3,
+.member-card h3 {
+  margin: 0 0 8px;
+}
+
+.simple-card p,
+.member-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+
+.product-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: stretch;
+  gap: 22px;
+}
+
+.image-placeholder {
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  border: 2px dashed #86bba0;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #d9f6e3, #d5e5ff);
+  color: #365f48;
+  text-align: center;
+  padding: 20px;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+
+.image-placeholder span {
+  place-items: center;
+  min-height: 250px;
+}
+
+.product-list { padding-left: 20px; }
+
+.product-list li { margin: 10px 0; }
+
+.wind-card { margin-top: 18px; }
+
+
+.ods-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 850px;
+  margin: 0 auto 22px;
+  padding: 25px;
+
+  border-radius: 16px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.ods-number {
+  flex: 0 0 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+
+  color: white;
+  background: #bd2026;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.ods-card h3 { margin: 0 0 6px; }
+
+.ods-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+
+.members {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.member-card { text-align: center; }
+
+.member-card h3 { font-size: 1rem; }
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 13px;
+
+  border-radius: 50%;
+  color: var(--green-dark);
+
+  background: linear-gradient(135deg, #b8edc9, #c6dcff);
+  font-weight: 800;
+}
+
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 600px;
+  margin: auto;
+  padding: 28px;
+
+  border-radius: 16px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.contact-symbol {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--mint);
+  font-size: 1.8rem;
+}
+
+.contact-card h3,
+.contact-card p {
+  margin: 0 0 5px;
+}
+
+.contact-card a {
+  color: var(--green);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.contact-card small { color: #7b6551; }
+
+
+.join-section {
+  background: linear-gradient(110deg, #d5f8e1, #d9e8ff) !important;
+}
+
+.join-card {
+  max-width: 650px;
+  margin: auto;
+  text-align: center;
+}
+
+.join-card .button { margin-top: 16px; }
+
+
+.site-footer {
+  padding: 32px 20px;
+  text-align: center;
+  background: #092f1d;
+  color: white;
+}
+
+.site-footer a {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-decoration: none;
+}
+
+.site-footer p { margin: 4px 0; }
+
+.site-footer small { color: #c5ddce; }
+
+
+@media (max-width: 900px) {
+
+  .site-header { flex-wrap: wrap; }
+
+  .menu-toggle { display: block; }
+
+  .navigation {
+    display: none;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 12px;
+  }
+
+  .navigation.is-open { display: flex; }
+
+  .navigation a { padding: 10px 6px; }
+
+  .navigation .join-link { text-align: center; }
+
+  .foda-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .simple-grid,
+  .members {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .intro-panels,
+  .mini-grid,
+  .product-layout,
+  .simple-grid,
+  .members {
+    grid-template-columns: 1fr;
+  }
+
+  .hero { min-height: 270px; }
+
+  .hero-emblem {
+    width: 68px;
+    height: 68px;
+  }
+
+  .foda-grid { grid-template-columns: 1fr 1fr; }
+
+  .foda-card {
+    padding: 10px;
+    font-size: .7rem;
+  }
+
+  .page-section {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .ods-card {
+    align-items: flex-start;
+    padding: 17px;
+    gap: 14px;
+  }
+
+  .ods-number {
+    flex-basis: 58px;
+    height: 58px;
+    font-size: 2rem;
+  }
+
+  .contact-card {
+    align-items: flex-start;
+    padding: 20px;
+    gap: 12px;
+  }
+
+}
+
+</style>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="ACINES, ir al inicio">
+    
+      <img src="logo.png" alt="Logotipo de ACINES" class="logo">
+      <span><strong>ACINES</strong><small>Asociación Civil Internacional<br>de Energía Sustentable</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="navigation" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#agenda">Agenda 2030</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+      <a class="join-link" href="#unete">Únete</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero section-anchor">
+      <div class="hero-content">
+    
+        <img src="emblema.png" alt="Emblema de ACINES" class="hero-emblem">
+        <h1>Impulsamos el futuro con la fuerza de la naturaleza</h1>
+        <p class="responsible"><span aria-hidden="true">✓</span> Empresa Socialmente Responsable</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#proyectos">Conoce nuestros proyectos</a>
+          <a class="button button-outline" href="#nosotros">Quiénes somos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-panels content-width" aria-label="Resumen de ACINES">
+      <article class="info-card">
+        <div class="round-icon" aria-hidden="true">◎</div>
+        <div><h2>Misión &amp; Visión</h2>
+          <p>Promover la transición energética sostenible mediante la cooperación internacional, educación y proyectos de energía renovable que impacten positivamente a comunidades y al medio ambiente.</p>
+        </div>
+      </article>
+      <article class="info-card">
+        <div class="round-icon" aria-hidden="true">◉</div>
+        <div><h2>Visión</h2>
+          <p>Ser referente global en soluciones sustentables, impulsando un futuro donde la energía limpia sea accesible, responsable y respetuosa para las próximas generaciones.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="foda content-width">
+      <div class="section-heading">
+        <h2>Análisis FODA</h2>
+        <p>Evaluación estratégica para fortalecer nuestro impacto</p>
+      </div>
+      <div class="foda-grid">
+        <article class="foda-card strength"><h3>↑ Fortalezas</h3><ul><li>Red internacional de especialistas</li><li>Compromiso con la sostenibilidad</li><li>Alianzas estratégicas globales</li></ul></article>
+        <article class="foda-card opportunity"><h3>☼ Oportunidades</h3><ul><li>Crecimiento de energías renovables</li><li>Cooperación en los ODS 2030</li><li>Innovación en tecnologías limpias</li></ul></article>
+        <article class="foda-card weakness"><h3>△ Debilidades</h3><ul><li>Recursos financieros limitados</li><li>Necesidad de ampliar la infraestructura</li></ul></article>
+        <article class="foda-card threat"><h3>◇ Amenazas</h3><ul><li>Cambios en políticas energéticas</li><li>Competencia global</li><li>Costos de instalación</li></ul></article>
+      </div>
+      <div class="tags"><span>Energía renovable</span><span>Eficiencia energética</span><span>Cooperación global</span></div>
+    </section>
+
+    <section class="team-preview content-width">
+      <div class="section-heading"><h2>Agenda 2030 — ODS 7</h2><p>Profesionales comprometidos con el cambio sustentable</p></div>
+      <div class="mini-grid">
+        <article><span class="mini-icon">♧</span><h3>Dirección Ejecutiva</h3><p>Liderazgo estratégico y representación institucional</p></article>
+        <article><span class="mini-icon blue">♧</span><h3>Coordinación Técnica</h3><p>Desarrollo y supervisión de proyectos solares y eólicos</p></article>
+        <article><span class="mini-icon">♧</span><h3>Investigación y Sustentabilidad</h3><p>Estudios, impacto ambiental y educación comunitaria</p></article>
+      </div>
+    </section>
+
+    <section id="nosotros" class="page-section section-anchor">
+      <div class="section-title"><span class="eyebrow">ACINES</span><h2>Nosotros</h2><p>Trabajamos por un futuro donde la energía sustentable esté al alcance de todas las comunidades.</p></div>
+      <div class="simple-grid">
+        <article class="simple-card"><h3>Misión</h3><p>Impulsar el uso de energía renovable por medio de proyectos accesibles, educación y colaboración con comunidades, instituciones y especialistas.</p></article>
+        <article class="simple-card"><h3>Visión</h3><p>Ser una organización referente en energía limpia, tecnología sustentable y cooperación para el desarrollo.</p></article>
+        <article class="simple-card"><h3>Valores</h3><p>Responsabilidad ambiental, innovación, cooperación, accesibilidad, seguridad y compromiso social.</p></article>
+      </div>
+    </section>
+
+    <section id="proyectos" class="page-section section-anchor">
+      <div class="section-title"><span class="eyebrow">Soluciones limpias</span><h2>Proyectos y productos</h2><p>Soluciones pensadas para mejorar el acceso a electricidad confiable y reducir el impacto ambiental.</p></div>
+      <div class="product-layout">
+        <div class="image-placeholder">
+
+          <img src="paneles-solares.png" alt="Paneles solares" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <span style="display:none">Espacio para imagen de paneles solares</span>
+        </div>
+        <div class="simple-card">
+          <h3>Paneles solares</h3>
+          <p>Nuestro producto principal son los paneles solares, además de su instalación, mantenimiento y asesoría.</p>
+          <ul class="product-list">
+            <li><strong>Paneles solares:</strong> precio de referencia indicado en el proyecto: $26,500 MXN (aprox. USD $1,432; sujeto a cotización).</li>
+            <li><strong>Batería de litio:</strong> precio de referencia de $20,000 MXN. Suele conservar mejor su capacidad, dependiendo del modelo y uso.</li>
+            <li><strong>Batería de gel:</strong> precio de referencia de $10,000 MXN. Su vida útil depende del uso, mantenimiento y condiciones de instalación.</li>
+          </ul>
+          <p>La generación real depende de la potencia instalada, las horas de sol, la ubicación y el consumo. Se recomienda una evaluación técnica antes de definir el sistema.</p>
+        </div>
+      </div>
+      <article class="simple-card wind-card"><h3>Alternativa eólica</h3><p>Cuando la radiación solar es insuficiente, puede estudiarse un sistema eólico. Su viabilidad depende de las condiciones del viento, permisos, instalación y presupuesto.</p></article>
+    </section>
+
+    <section id="agenda" class="page-section section-anchor">
+      <div class="section-title"><span class="eyebrow">Desarrollo sostenible</span><h2>Agenda 2030</h2><p>Contribuimos a los Objetivos de Desarrollo Sostenible, especialmente al ODS 7: Energía asequible y no contaminante.</p></div>
+      <div class="ods-card">
+        <div class="ods-number">7</div>
+        <div><h3>Energía asequible y no contaminante</h3><p>Promovemos el acceso a energía moderna, confiable, sostenible y accesible. Apostamos por tecnologías solares y eólicas, el uso eficiente de la energía y la educación sobre hábitos responsables.</p></div>
+      </div>
+      <div class="simple-grid">
+        <article class="simple-card"><h3>☀ Energía renovable</h3><p>Fomentar soluciones solares y otras fuentes renovables adecuadas a cada comunidad.</p></article>
+        <article class="simple-card"><h3>♻ Eficiencia energética</h3><p>Orientar a las personas para reducir el desperdicio de electricidad y aprovechar mejor los recursos.</p></article>
+        <article class="simple-card"><h3>🤝 Acceso comunitario</h3><p>Explorar alianzas y proyectos que acerquen energía limpia a comunidades en desarrollo.</p></article>
+      </div>
+    </section>
+
+    <section id="equipo" class="page-section section-anchor">
+      <div class="section-title"><span class="eyebrow">Personas detrás del proyecto</span><h2>Nuestro equipo</h2><p>Un equipo comprometido con el desarrollo y la difusión de soluciones sustentables.</p></div>
+      <div class="simple-grid members">
+        <article class="member-card"><div class="avatar">AB</div><h3>Alexandre Barona Vigueras</h3><p>Director General (CEO)</p></article>
+        <article class="member-card"><div class="avatar">FC</div><h3>Fausto Camacho Garcia</h3><p>Marketing</p></article>
+        <article class="member-card"><div class="avatar">EC</div><h3>Erick Nicolas Castañeda</h3><p>Ejecutor Operativo</p></article>
+        <article class="member-card"><div class="avatar">DB</div><h3>Diego Claudio Becerra</h3><p>Expositor</p></article>
+        <article class="member-card"><div class="avatar">IL</div><h3>Ivvo Gonzalo Luna Córdoba</h3><p>Experto del Producto</p></article>
+      </div>
+    </section>
+
+    <section id="contacto" class="page-section section-anchor">
+      <div class="section-title"><span class="eyebrow">Hablemos</span><h2>Contacto</h2><p>¿Te interesa conocer más sobre energía sustentable o colaborar con ACINES?</p></div>
+      <div class="contact-card"><div class="contact-symbol">✆</div><div><h3>Teléfono de contacto</h3><p><a href="tel:+525555501234">+52 55 5555 01234</a></p><small>Número ficticio de ejemplo; reemplázalo por el número real antes de publicar.</small></div></div>
+    </section>
+
+    <section id="unete" class="page-section join-section section-anchor">
+      <div class="section-title"><span class="eyebrow">Participa</span><h2>Únete a ACINES</h2><p>La transición energética necesita ideas, colaboración y compromiso.</p></div>
+      <div class="simple-card join-card"><h3>Construyamos un futuro más limpio</h3><p>Puedes apoyar compartiendo información sobre energías renovables, proponiendo proyectos comunitarios o colaborando en actividades educativas.</p><a class="button button-dark" href="#contacto">Quiero colaborar</a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a href="#inicio">ACINES</a><p>Impulsamos el futuro con la fuerza de la naturaleza.</p><small>Proyecto educativo · Energía sustentable y limpia</small></footer>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.navigation');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+</body>
+</html>
